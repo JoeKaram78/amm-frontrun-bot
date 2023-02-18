@@ -1,0 +1,56 @@
+﻿<Window x:Class="SmartCryptoBot.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SmartCryptoBot"
+        mc:Ignorable="d"
+        Title="ChatGPT Binance Bot" Height="600" Width="1000" ResizeMode="CanResize" ShowInTaskbar="False">
+    <DockPanel LastChildFill="True" HorizontalAlignment="Stretch">
+        <StackPanel DockPanel.Dock="Left" Width="250" Background="Black" HorizontalAlignment="Stretch">
+            <Label Content="Bot Settings" Foreground="White" FontSize="20" HorizontalAlignment="Center"></Label>
+            <Rectangle HorizontalAlignment="Stretch" Fill="White" Height="1"/>
+
+            <Label Content="Api Key:" Foreground="White" FontWeight="Bold" Margin="5 0"></Label>
+            <TextBox Name="txtApiKey" Height="25" Margin="10 0" VerticalContentAlignment="Center"></TextBox>
+            <Label Content="Api Secret Key:" Foreground="White" FontWeight="Bold" Margin="5 0"></Label>
+            <TextBox Name="txtApiSecret" Height="25" Margin="10 0" VerticalContentAlignment="Center"></TextBox>
+            <Label Content="Trading Limit per Pair in BTC: (eg, 0.001)" Foreground="White" FontWeight="Bold" Margin="5 0"></Label>
+            <TextBox Name="txtTradingLimitPerPair" Height="25" Margin="10 0" VerticalContentAlignment="Center"></TextBox>
+            <Button Content="Save" Click="SaveSettings_Click" Background="Orange" Height="30" Foreground="White" FontWeight="Bold" Margin="50 10 50 15"></Button>
+
+            <Rectangle HorizontalAlignment="Stretch" Fill="White" Height="1"/>
+            <Label Content="Bot Start/Stop" Foreground="White" FontSize="20" HorizontalAlignment="Center"></Label>
+            <Rectangle HorizontalAlignment="Stretch" Fill="White" Height="1"/>
+            <Button Name="btnStartOrStopBot" Content="Start Bot" Click="StartorStopBot_Click" Background="Orange" Height="30" Foreground="White" FontWeight="Bold" Margin="50 10 50 15"></Button>
+        </StackPanel>
+        <StackPanel DockPanel.Dock="Top" Background="Orange">
+            <Label Content="Open/In Progress Trades" Margin="10 0" Foreground="White" FontSize="20"></Label>
+            <Rectangle HorizontalAlignment="Stretch" Fill="White" Height="1"/>
+            <Grid MaxHeight="200">
+                <ListView Name="lvOpenTrades" HorizontalContentAlignment="Stretch" Margin="10">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Symbol" Width="100"
+                                            DisplayMemberBinding="{Binding Symbol}" />
+                            <GridViewColumn Header="Quantity" Width="100" 
+                                            DisplayMemberBinding="{Binding Quantity}" />
+                            <GridViewColumn Header="Buy Price" Width="200" 
+                                            DisplayMemberBinding="{Binding BuyPrice}" />
+                            <!--<GridViewColumn Header="Best Ask Price" Width="200" 
+                                            DisplayMemberBinding="{Binding BestAskPrice}" />-->
+                            <GridViewColumn Header="Expected Sell Price" Width="200" 
+                                            DisplayMemberBinding="{Binding ExpectedSellPrice}" />
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </Grid>
+        </StackPanel>
+        <StackPanel DockPanel.Dock="Top" Background="YellowGreen"/>
+        <Grid>
+            <ScrollViewer CanContentScroll="True" ScrollChanged="ScrollViewer_ScrollChanged">
+                <TextBlock Name="lblLogMessages" TextWrapping="Wrap" Margin="15 10"></TextBlock>
+            </ScrollViewer>
+        </Grid>
+    </DockPanel>
+</Window>
